@@ -25,12 +25,10 @@ def with_pdf (pdf_doc, fn, pdf_pwd, *args):
         # create a parser object associated with the file object
         parser = PDFParser(fp)
         # create a PDFDocument object that stores the document structure
-        doc = PDFDocument(parser)
+        doc = PDFDocument(parser, pdf_pwd)
         # connect the parser and document objects
         parser.set_document(doc)
-        # supply the password for initialization
-        doc.initialize(pdf_pwd)
-
+        
         if doc.is_extractable:
             # apply the function and return the result
             result = fn(doc, *args)
